@@ -24,3 +24,7 @@ div.tabContent.hide { display: none; }
 .tg .tg-ptna{background-color:#FFF;border-color:inherit;color:#1C1C1C;font-size:15px;text-align:left;vertical-align:top}
 .tg .tg-2kuf{background-color:#FFF;border-color:inherit;color:#1C1C1C;font-size:15px;font-weight:bold;text-align:left;
 		  vertical-align:top}
+#MBIT{
+	margin:10px;
+	width:300px;
+}
