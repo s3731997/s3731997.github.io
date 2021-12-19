@@ -1,19 +1,352 @@
 <html>
-<head>
-<meta charset="utf-8">
-</head>
-<body>
+    <head>
+        <title>Enoch's Potofolio</title>
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <script>
+            //<![CDATA[
 
-Name: Enoch Liu
-Student Number: s3731997
-Email: s3731997@student.rmit.edu.au
- <p>
-Hi, I am Enoch. I turned 19 a few days ago. My parents are originally from Hong Kong, but they have lived in Australia for nearly three decades. 
-  Although my parents are fluent in Mandarin, Cantonese and English, I am only fluent in English and Python, but I also speak a little Indonesian, Mandarin, C++ and R. 
-  Oh, I should mention that both of my parents speak Python and C++, and my dad is also fluent in R.
-I was born in Sydney, but have mostly lived in Victoria. For the past nine years, my family and I have called the Melbourne area home, although my dad has spent a lot of time working overseas. Until the beginning of COVID, my dad was working as an IT consultant for a company in Indonesia; lately he has been working from home.  I am currently doing some internship work for him
-Because I was homeschooled for high school, I have been able to take some Open University Courses to supplement my studies for about three years. I am currently a little over half way through the RMIT Information Technology Degree (yes, you are right, I have done this backwards). 
-My favorite pastimes are: surfing the web, editing Wikipedia articles, researching retro games (especially Nintendo games), hanging out at church with my friends, and talking about God.  I am a Christian, and believe that there is a God and that He is the Great Programmer of this world.
- </p>
- </body>
+            var tabLinks = new Array();
+            var contentDivs = new Array();
+
+            function init() {
+                // Grab the tab links and content divs from the page
+                var tabListItems = document.getElementById("tabs").childNodes;
+                for (var i = 0; i < tabListItems.length; i++) {
+                    if (tabListItems[i].nodeName == "LI") {
+                        var tabLink = getFirstChildWithTagName(tabListItems[i], "A");
+                        var id = getHash(tabLink.getAttribute("href"));
+                        tabLinks[id] = tabLink;
+                        contentDivs[id] = document.getElementById(id);
+                    }
+                }
+
+                // Assign onclick events to the tab links, and
+                // highlight the first tab
+                var i = 0;
+
+                for (var id in tabLinks) {
+                    tabLinks[id].onclick = showTab;
+                    tabLinks[id].onfocus = function () {
+                        this.blur();
+                    };
+                    if (i == 0) tabLinks[id].className = "selected";
+                    i++;
+                }
+
+                // Hide all content divs except the first
+                var i = 0;
+
+                for (var id in contentDivs) {
+                    if (i != 0) contentDivs[id].className = "tabContent hide";
+                    i++;
+                }
+            }
+
+            function showTab() {
+                var selectedId = getHash(this.getAttribute("href"));
+
+                // Highlight the selected tab, and dim all others.
+                // Also show the selected content div, and hide all others.
+                for (var id in contentDivs) {
+                    if (id == selectedId) {
+                        tabLinks[id].className = "selected";
+                        contentDivs[id].className = "tabContent";
+                    } else {
+                        tabLinks[id].className = "";
+                        contentDivs[id].className = "tabContent hide";
+                    }
+                }
+
+                // Stop the browser following the link
+                return false;
+            }
+
+            function getFirstChildWithTagName(element, tagName) {
+                for (var i = 0; i < element.childNodes.length; i++) {
+                    if (element.childNodes[i].nodeName == tagName) return element.childNodes[i];
+                }
+            }
+
+            function getHash(url) {
+                var hashPos = url.lastIndexOf("#");
+                return url.substring(hashPos + 1);
+            }
+
+            //]]>
+        </script>
+    </head>
+    <body onload="init()">
+        <table style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="width: 50%;">
+                        <img src="face.jpg" style="width: 300px;" class="fr-fic fr-dib" />
+                        <br />
+                    </td>
+                    <td style="width: 50%;">
+                        <p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 12pt; margin-bottom: 12pt;">Enoch Liu</p>
+
+                        <p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 12pt; margin-bottom: 12pt;">RMIT Student, School of Computing Technologies</p>
+
+                        <p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 12pt; margin-bottom: 12pt;">Bachelor of IT, 3rd Year</p>
+
+                        <p dir="ltr" style="line-height: 1.38; text-align: justify; margin-top: 12pt; margin-bottom: 12pt;">s3731997@student.rmit.edu.au</p>
+                        <br />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul id="tabs">
+            <li><a href="#tab1">Personal Infomation</a></li>
+            <li><a href="#tab2">Interest in IT</a></li>
+            <li><a href="#tab3">Ideal Job</a></li>
+            <li><a href="#tab4">Personal Profile</a></li>
+            <li><a href="#tab5">Project Ideas</a></li>
+        </ul>
+
+        <div class="tabContent" id="tab1">
+		<p>
+		Mr. Enoch Liu is a third year Bachelor of IT student at RMIT University, who has had a keen interest in computer and programming since an early age. He was born in Australia with a Chinese cultural heritage, and with parents that maintain a close connection to their birthplace, Hong Kong. Enoch is fluent in English, (as well as Python, Java, C++ and R, just joking!), and is learning to read and write Chinese and Indonesian. 
+		</p>
+		<p>
+		Enoch grew up in Gippsland while his father completed his research in Machine Learning over there. Since then, Enoch has been traveling between Melbourne and Jakarta for a number of years, while his father served as an AUSAid advisor to the Indonesian government. Due to the frequent traveling, Enoch was educated by a private tutor while in Melbourne and aboard (online classes). At 14, Enoch passed the American SAT University Entrance Exam, scoring an outstanding result of the top 1%. He started enrolling in IT subjects at RMIT through Open University when he was 15. Currently, Enoch has completed the majority of technical subjects and a Math minor in his IT degree. COVID-19 has provided the unique opportunity for Enoch to remain in Melbourne while completing the last few subjects involving group work before he will continue on graduate studies.  
+		</p>
+		<p>
+		Enoch is a “geek” who loves to learn about the latest innovations, technologies and games. His favorite pastimes include 1) participating in “Hackathon” which is a kind of innovation development session lasting from a day to a few days, 2) editing Wikipedia articles to improve the knowledge content and presentation, 3) researching retro games (especially Nintendo games) and learning how they work, 4) reading fan fictions that extend the fantasy in games into print media. Enoch loves to hang out at church with his friends and discuss the Bible. He also enjoys learning about Chinese culture, food, people and philosophy. Understanding his own cultural heritage gives him enormous satisfaction and it is a great way to connect with family and friends.
+		</p>
+		<p>
+		In particular, Enoch is an avid gamer in his spare time, whose favorite genres include platformers, fighting games and racing games . His favorites are Sonic the Hedgehog 2, Ni No Kuni, Mario Kart 8, and Minecraft. He also extends the gaming experience from reading fanfiction of those games. When he was young, Enoch always dreamed of becoming a game developer, creating excellent experiences for people to marvel at and enjoy. He tried to make games in Scratch (a block-based visual programming language) when he was 9, and at 12 he developed card games in Python. He still continues to watch indie developers, and secretly wishes that he could make cool games like them. The dream of game development was the initial spark that inspired Enoch to pursue study at RMIT and a future career in IT.
+		</p>
+        </div>
+        <div id="tab2" class="tabContent">
+            <p>
+                Enoch is interested in the emerging fields of Quantum Computing, Artificial Intelligence and Data Analytics in “monetizing” financial data. “Monetizing” means using data, such as customer purchasing records, to better
+                understand their spending pattern and form targeted marketing strategies, in order to make money. Quantum computers are predicted to break the current hardware limitations of the conventional computers we use nowadays due to
+                its much faster processing speed, and research on its programming is already under way. Artificial Intelligence is becoming more widely used in automated decision making such as search assistants and self-driving cars, in
+                order to achieve better cost efficiency in business and convenience in everyday life. Data Analytics in monetizing financial data is revolutionizing banking, finance and insurance industries; the use of mobile payment
+                platforms, electronic wallets and wearables are filling data depositories needed for Big Data which could then be utilized for analysis in business strategies that improve profit margins. Enoch is working to position himself
+                to capture the opportunities arising from the disruptions these emerging technologies might bring to enable new ways of monetizing financial data.
+            </p>
+            <p>
+                Enoch’s earliest inspiration came from his father’s research in advanced Machine Learning algorithms. Enoch first discovered his own programming ability in Scratch (a block-based visual programming language) at 9, and later
+                on at 12 years of age he started extensive programming after reading Python Programming for the Absolute Beginner (Dawson 2005). The programming examples in the book regarding game development sparked his ambition to write
+                his own game in the future. Around the same time, Enoch installed Linux on an old computer and experimented with the UNIX Shell programming and Python Interpreter. He also discovered his interests in administering the local
+                computer network at home. Enoch is currently working his first job as a part-time intern for a Data Analytic Fintech project. This project uses Big Data to represent stock market and FOREX (foreign exchange) market price
+                discovery, and Enoch is learning more about financial market analysis from his colleagues who specialize in those areas.
+            </p>
+            <p>
+                The circumstances when Enoch initially enrolled at RMIT were a little unusual. After passing the American SAT exam, RMIT was the only university to accept Enoch’s enrollment when he was 15. Unlike the American universities,
+                almost all Australian universities ruled out enrolment for a 15-year-old student but RMIT University was a noted exception. After enrolling at RMIT, Enoch learned Java and C++, and he was impressed with the teaching style
+                and the quality of teaching materials. Enoch chose to enroll in more technical subjects first because he could complete them in his preferred order, and this flexibility fits his traveling schedule well. Most of the course
+                materials are well-organized and easy to navigate, which helped him to succeed and achieved top marks for entrance to graduate school in the future.
+            </p>
+            <p>
+                During his time at RMIT, Enoch has become proficient in a number of programming languages that provide a solid foundation to enter the job market and continue graduate studies. Enoch expects to further improve the teamwork
+                skills learnt from group projects, an ability that will be essential in future employment. In particular, he would like to focus on learning better communication with fellow team members, and how to schedule and budget to
+                meet client’s needs and deadlines. IT exists to serve the purpose of human’s needs in business, medical, social or other settings; the technologies do not stand alone without a purpose. To learn how to realize IT’s potential
+                in improving human life is the central issue that Enoch is keen to gain better understanding of in his remaining journey at RMIT. He will be working diligently to finalize the group projects before completing his IT degree
+                in the next 12 months.
+            </p>
+        </div>
+        <div id="tab3" class="tabContent">
+            <a href="ad.html">See ad image here.</a> <br>
+			<a href="https://www.seek.com.au/job/55289444"> See original job here</a>
+            <h2>Position Description</h2>
+            <p>
+                The above advertisement is a recruitment listing for a software developer position in a fintech company, which is a leader in payment systems and fraud detection. The role of software developer is expected to develop and
+                maintain a new mobile payment platform, involving mobile wallets and wearables. The developer is also expected to work with other developers and analysts as a team. Secure APIs will also be developed to access the payment
+                system, and message queues will be used to process the high amount of real time payments that will take place. This position will be challenging as real time payment processing requires fast response time and a high
+                expectation of uninterrupted service, in order to ensure smooth financial transactions. Any service breakdowns will cause huge financial loss to the client and significantly reduce customer satisfaction. The developer is
+                expected to be a team player who works with other IT professionals in the company.
+            </p>
+            <h2>Why This Position is Appealing</h2>
+			<p>
+            There are a number of reasons why this job advertisement is attractive (to me personally).<br> Firstly, mobile payment platforms are an emerging field in IT. The challenges and career opportunities will be relatively abundant, and
+            the remunerations will be generous because these skills are highly sought after but the available skilled IT professionals are few. The flexible work arrangements and the opportunity to try a wide range of tasks are very
+            appealing to a graduate who is just starting out in the job market. Secondly, this position aligns with my own experience as an intern in a fintech project and my goal to establish myself in the technological applications in the
+            fintech industry. The prospect of advancing my IT career into more senior positions is excellent in a well resourced fintech firm (not a start-up), where the budget is available for a competent IT team.
+			</p><p>Thirdly, this position is
+            for an established company with an impressive client list, including big corporations and the government. Working in such a company will help me to develop a professional network that will enhance my career advancement in the
+            future. The colleagues and clients who I will work with, will be important references for future employers. Finally, work experience from this company will complement my planned graduate studies in Artificial Intelligence and
+            Quantum Computing. Automated real time payment approval is an increasingly important application area of automated decision making in Artificial Intelligence, while high-speed real-time fraud detection will be relevant to the
+            application of Quantum Computing when the hardware becomes available.</p>
+            <div style="clear: both;"></div>
+            <h2>Skills, Qualifications and Experience Required for the Position</h2>
+            <p>
+                Skills:
+            </p>
+
+            <ul>
+                <li>
+                    People skills - communication and social capabilities:
+                    <ul>
+                        <li>
+                            A team player who can communicate well with other IT professionals to collaborate on team projects.
+                        </li>
+                        <li>
+                            The suitable candidate is capable of fostering good working relationships with colleagues within the company to deliver high quality products to clients.
+                        </li>
+                        <li>
+                            These skills are particularly important for integration tests and message queue implementations, where the combined expertise of several staff is crucial for the project’s success.
+                        </li>
+                        <li>Personal attributes: An open attitude to the latest technologies and innovative solutions proposed by colleagues.</li>
+                    </ul>
+                </li>
+
+                <li>
+                    Technical programming skills - writing clean, high quality programs that are robust:
+                    <ul>
+                        <li>
+                            Writing codes according to good programming practices which are easy to follow by other team members, and easy to maintain. The codes will be evolving with the client's changing business needs over time,
+                            therefore it is important to organize the codes in small, clean, individual blocks, to make it easier to debug and reuse.
+                        </li>
+                        <li>
+                            High quality codes also include 1) the extensive use of in-program comments to aid the interpretation of the codes, 2) the efficient execution of the programming tasks to achieve the desired business outcomes,
+                            and 3) sufficient testings are carried out to ensure the system will remain stable and operational within the range of data and use applications specified by the clients.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Software development skills:
+                    <ul>
+                        <li>Working with the analysts in the team, conduct planning, developing, and testing of programs according to their specifications.</li>
+                        <li>Good understanding of different stages in software development will make sure the candidate is able to work with other developers in the developmental stages appropriate to the project’s progression.</li>
+                    </ul>
+                </li>
+                <li>
+                    Database programming and management skills:
+                    <ul>
+                        <li>Design database to contain necessary and relevant information for the client’s business purposes.</li>
+                        <li>Manage the database (writing SQL statements) to ensure the customers are able to process transactions with payment approvals quickly and without interruption.</li>
+                    </ul>
+                </li>
+            </ul>
+            Qualifications:
+            <ul>
+                <li>
+                    A tertiary degree in IT or engineering (desirable but not mandatory):
+                    <ul>
+                        <li>
+                            An IT or Engineering degree provides the necessary training and background knowledge, which confirms the acquisition of the skills at an adequate level needed to succeed in the job to prospective employers.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            Experiences:
+            <ul>
+                <li>
+                    Experience in C# and .Net
+                    <ul>
+                        <li>
+                            3 year of experience in programming in C# and .NET (preferably including .NET Core).
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Experience with SQL server
+                    <ul>
+                        <li>
+                            Experience in designing and managing SQL Server databases to support the data requirements of the mobile payment system.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Experience in developing secure APIs
+                    <ul>
+                        <li>
+                            Understand how to develop APIs with good security practices, to allow other people to work with the payment system, without compromising the payment system’s security.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Message queueing experience (desirable but not mandatory):
+                    <ul>
+                        <li>
+                            Experience in using message queue to process tasks, particularly, real time tasks like the ones needed for payment .
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Experience in financial industry, like banking and payment (desirable but not mandatory):
+                    <ul>
+                        <li>
+                            Experience working in the financial industry, especially its best practices for handling personal financial data such as payments, loans or banking transactions.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2>Enoch’s Current Skills, Qualifications and Experience</h2>
+            Current skills:
+            <ul>
+                <li>
+                    Limited social and communication skills in a team environment.
+                </li>
+                <li>An open attitude to latest technologies and innovations.</li>
+                <li>Competent in technical programming skills in clean, high quality and robust codes.</li>
+                <li>Good knowledge of all stages in software development and be able to work appropriately with fellow IT professionals in the internship program.</li>
+                <li>Highly capable in designing and managing databases with a coherent structure to support client’s business needs.</li>
+            </ul>
+            Current qualifications :
+            <ul>
+                <li>Year 3 studying for a Bachelor of IT at RMIT.</li>
+            </ul>
+            Current work experiences:
+            <ul>
+                <li>Experience in programming languages Python, R and C++.</li>
+                <li>Experience with Postgres, and MongoDB Databases which are using the same SQL standard as SQL server.</li>
+                <li>Some experience in developing secure APIs from the programming tasks in the internship program.</li>
+                <li>Some experience in working in the financial industry from the internship.</li>
+            </ul>
+		<h2>A Plan to Obtain the Required Skills, Qualifications and Experience for the Position</h2>
+		<table class="tg">
+		<thead>
+		  <tr>
+			<th class="tg-2kuf"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Gaps in Enoch’s Current Skill Set </span></th>
+			<th class="tg-2kuf"><span style="font-weight:700;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Plan to Improve Enoch’s Skill Set</span></th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">1) Communication and social skills in a team environment</span></td>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Enoch is planning to develop better team social/communication skills from the group projects at RMIT.</span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Interaction and communication with fellow students in group projects are valuable experiences to prepare for real job team situations.</span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">The internship also offers practical training in this area.</span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF"> Part-time jobs requiring teamwork helps to build confidence and acquire the skills in handling different social situations.</span></td>
+		  </tr>
+		  <tr>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">2) writing clean, high quality code</span></td>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Enoch is already a skilled programmer, but he will continue to perfect his coding skills in the Fintech internship and learn to document the codes at a very high standard. </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">This will help other developers in the team to understand his codes and make future debugging an easier job. He will also write code that performs well.</span><br></td>
+		  </tr>
+		  <tr>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">3) Experience in C# and .Net</span></td>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Using his existing C++ knowledge, Enoch will learn to code C# and .NET quickly, and seek to work on projects that require C#/.NET.  </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">There are short courses available from Microsoft, which will help him get up to speed. </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">.NET is a popular framework, and so there will be plenty of projects he can contribute to and get the necessary experience.</span></td>
+		  </tr>
+		  <tr>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">4) Experience with SQL Server</span></td>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Enoch has previous SQL knowledge from Postgres and MySQL,so he could easily pick up SQL Server’s quirks, </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">and he plans to continue working on other databases using SQL, </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">as there will still be a demand for database administrators.</span></td>
+		  </tr>
+		  <tr>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">5) Message queueing experience</span></td>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Enoch will actively seek learning opportunities on message queue protocols and clients, such as Rabbit AMQP. </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">This is not a mandatory requirement, but it will be useful to find other internships in this area.</span></td>
+		  </tr>
+		  <tr>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">6) A tertiary degree in IT or engineering</span></td>
+			<td class="tg-ptna"><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">Enoch plans to complete the Bachelor of IT at RMIT in the next 12 months.</span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF"> It will give confidence to his prospective employers that his knowledge and skills in the IT field will be adequately covered by his education, </span><br><span style="font-weight:400;font-style:normal;text-decoration:none;color:#1C1C1C;background-color:#FFF">making him a suitable candidate for the job.</span></td>
+		  </tr>
+		</tbody>
+		</table>
+        </div>
+        <div id="tab4" class="tabContent">
+            <h2>Myers Briggs Type Indicator</h2>
+            <h2>Learning Style Test</h2>
+            <h2></h2>
+        </div>
+        <div id="tab5" class="tabContent">
+		<h2>Overview</h2>
+		<h2>Motivation</h2>
+		<h2>Description</h2>
+		<h2>Tools and Technologies</h2>
+		<h2>Skills Required</h2>
+		<h2>Outcome</h2>
+		</div>
+    </body>
 </html>
